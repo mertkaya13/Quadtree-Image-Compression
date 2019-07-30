@@ -67,6 +67,11 @@ public class QuadTree<E> {
     /** The root of the quad tree is the whole image.**/
     protected Node<E> root = null;     // root of the tree
   
+    public int getX1(Position p){return validate(p).x1;}
+    public int getY1(Position p ){return validate(p).y1;}
+    public int getX2(Position p){return validate(p).x2;}
+    public int getY2(Position p ){return validate(p).y2;}
+	  
     /** The number of nodes in the QuadTree **/
     private int size = 0;              // number of nodes in the tree
   
@@ -86,9 +91,10 @@ public class QuadTree<E> {
      * @throws IllegalArgumentException if an invalid position is detected
      */
     protected Node<E> validate(Position<E> p) throws IllegalArgumentException {
-      if (!(p instanceof Node))
+        if (!(p instanceof Node))
         throw new IllegalArgumentException("Not valid position type");
-      Node<E> node = (Node<E>) p;       // safe cast
+      
+        Node<E> node = (Node<E>) p;       // safe cast
       if (node.getParent() == node)     // our convention for defunct node
         throw new IllegalArgumentException("p is no longer in the tree");
       return node;
@@ -366,39 +372,33 @@ public class QuadTree<E> {
 
     }
 
+    protected void setColour(Position p,double red,double green,double blue){
 
-    public void colourSetterAux(Position<E> p) {
+      
+      validate(p).setElement(new Colour(red,green,blue));
 
+    }
+
+    protected Colour getColour(Position p){
+
+      
+      return (Colour)validate(p).getElement();
+
+    }
+
+
+
+    protected int countLeaf(Position p) {
+      
       if(isLeaf(p)){
-        return;
-
+        return 1;
       }
+      return countLeaf(NW(p))+countLeaf(NE(p))+countLeaf(SW(p))+countLeaf(SE(p));
 
-      Node<E> node = validate(p);
+    }
 
-      colourSetterAux(node.NE);
-      colourSetterAux(node.NW);
-      colourSetterAux(node.SE);
-      colourSetterAux(node.SW);
+    protected static void arrayFiller(int length){
 
-      Colour element = ((Colour)node.getElement());
-
-
-      if(element.blue == -1 || element.green == -1 || element.red == -1){  
-
-        Colour NEelement = ((Colour)node.NE.getElement());
-        Colour NWelement = ((Colour)node.NW.getElement());
-        Colour SEelement = ((Colour)node.SE.getElement());
-        Colour SWelement = ((Colour)node.SW.getElement());
-
-        int red = (NEelement.red+NWelement.red+SEelement.red+SWelement.red)/4;
-        int green = (NEelement.green+NWelement.green+SEelement.green+SWelement.green)/4;
-        int blue = (NEelement.blue+NWelement.blue+SEelement.blue+SWelement.blue)/4;
-
-        node.setElement(new Colour(red,green,blue));
-
-      }
-  
     }
 
     public void printRoot(){

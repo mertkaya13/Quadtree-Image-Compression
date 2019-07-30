@@ -1,8 +1,8 @@
 public class Colour{
 
-    int red=-1;
-    int green=-1;
-    int blue=-1;
+    double red=-1;
+    double green=-1;
+    double blue=-1;
 
     Colour(){
 
@@ -12,7 +12,7 @@ public class Colour{
 
 }
 
-    Colour(int red,int green,int blue){
+    Colour(double red,double green,double blue){
 
         this.red = red;
         this.green = green;
@@ -23,41 +23,41 @@ public class Colour{
     /**
      * @return the blue
      */
-    public int getBlue() {
+    public double getBlue() {
         return blue;
     }
 
     /**
      * @return the red
      */
-    public int getRed() {
+    public double getRed() {
         return red;
     }
 
     /**
      * @return the green
      */
-    public int getGreen() {
+    public double getGreen() {
         return green;
     }
 
     /**
      * @param blue the blue to set
      */
-    public void setBlue(int blue) {
+    public void setBlue(double blue) {
         this.blue = blue;
     }
 
     /**
      * @param green the green to set
      */
-    public void setGreen(int green) {
+    public void setGreen(double green) {
         this.green = green;
     }
     /**
      * @param red the red to set
      */
-    public void setRed(int red) {
+    public void setRed(double red) {
         this.red = red;
     }
 
