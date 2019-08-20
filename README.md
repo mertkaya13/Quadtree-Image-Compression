@@ -15,7 +15,7 @@ To run:
 	java Main -i <inputFileName> -o <outputFileName>
 
 Known Bugs or Limitations : 
-	Contains no known bugs.
+	Works with images with high details and differences in colour.
 	
 	Only works with ppm images.
 
